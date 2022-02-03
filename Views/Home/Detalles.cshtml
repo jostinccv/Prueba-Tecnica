@@ -1,0 +1,57 @@
+﻿@model WebApi.Models.Books
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Books</h4>
+    <hr />
+    <dl class="list-group-item-info">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Excerpt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Excerpt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublisDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublisDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

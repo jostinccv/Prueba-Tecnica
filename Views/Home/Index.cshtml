@@ -1,0 +1,79 @@
+﻿@model IEnumerable<WebApi.Models.Books>
+
+@{
+    ViewBag.Title = "Lista de libros";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css" />
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+</head>
+
+
+<body>
+<br />
+<p>
+    @Html.ActionLink("Agregar libro", "Create")
+</p>
+
+<table class="table table-responsive" id="table_id">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PageCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Excerpt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublisDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PageCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Excerpt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublisDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Editar", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Detalles", new { id = item.ID }) |
+                    @using (Html.BeginForm("Delete", "Home", new { id = item.ID }, FormMethod.Post, new { onsubmit = "return confirm('seguro que quiere eliminar este libro?')" }))
+                    {
+                        @Html.AntiForgeryToken();
+                        <input type="submit" class="btn-danger" value="Delete" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
